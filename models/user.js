@@ -16,10 +16,10 @@ var UserSchema = new Schema({
     address: String,
     history: [{
         date: Date,
-        paid: { type: Number, default: 0},
+        paid: { type: Number, default: 0};
         //item: { type: Schema.Types.ObjectId, ref: ''}
         
-    }]
+    }];
     
 });
 
@@ -44,3 +44,5 @@ UserSchema.pre('save', function(next){
 UserSchema.methods. comparePass = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
+
+module.exports = mongoose.model('User', UserSchema);
