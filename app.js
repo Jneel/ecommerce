@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var User = require('./models/user');
 var ejs = require('ejs');
 var enginejs = require('ejs-mate');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var flash = require('express-flash');
 
 var app = express();
 
@@ -21,10 +24,35 @@ app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(cookieParser());
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: "qqqqqq"
+}));
+app.use(flash());
+
+
 app.engine('ejs', enginejs);
 app.set('view engine', 'ejs');
 
-app.post('/create-user', function(req, res, next){
+var mainRoutes = require('./routes/main');
+var userRoutes = require('./routes/user');
+app.use(mainRoutes);
+app.use(userRoutes);
+
+
+
+
+
+app.listen(3000, function(err){
+    if (err) throw err;
+    console.log("Server is Running");
+});
+
+
+
+/* app.post('/create-user', function(req, res, next){
     var user = new User();
     
     user.profile.name = req.body.name;
@@ -35,15 +63,16 @@ app.post('/create-user', function(req, res, next){
         if(err) return next(err);
         res.json('Successfully created a new user');
     });   
-});
+}); */
 
-app.get('/', function(req, res){
+
+/*app.get('/', function(req, res){
     res.render('main/home');
 });
 
 app.get('/about', function(req, res){
     res.render('main/about');
-});
+}); */ // /main is in /routes folder 
 
 
 
@@ -66,7 +95,3 @@ app.get('/catname', function(req, res){
 
 //app.delete()
 
-app.listen(3000, function(err){
-    if (err) throw err;
-    console.log("Server is Running");
-});
