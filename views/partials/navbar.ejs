@@ -60,7 +60,11 @@
            
         <% } %>
            
-        
+          <% if (user) { %>
+        <li><a href="/cart" class="fa fa-shopping-cart fa-2x"><span class="badge"><%= cart %></span></a></li>
+      <% } else { %>
+        <li><a href="/cart" class="fa fa-shopping-cart fa-2x"><span class="badge">0</span></a></li>
+        <% } %>
        </ul>
     
           
