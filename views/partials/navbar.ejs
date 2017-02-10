@@ -1,9 +1,16 @@
- <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+ <nav class="navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse">
     
      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" style="padding-left:20px;" href="/">SHOP</a>
+        <form class="navbar-form navbar-left form-inline" method="post" action="/search">
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+      </div>
+    </form>
+     
      
    <div class="collapse navbar-collapse " id="navbarsExampleDefault" style="text-align:right;">
         <ul class="navbar-nav mr-auto navbar-right">
